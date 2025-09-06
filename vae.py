@@ -34,14 +34,7 @@ class VAE(nn.Module):
             kl: tensor: (): Divergencia KL de ELBO al prior
             rec: tensor: (): Término de reconstrucción de ELBO
         """
-        ################################################################################
-        # TODO: Modifique/completar el código aquí
-        # Calcule la Evidencia Inferior Acotada negativa y su descomposición en KL y Rec
-        #
-        # Notar que nelbo = kl + rec
-        #
-        # Todas las salidas deben ser escalares
-        ################################################################################
+
         from codebase.utils import sample_gaussian, kl_normal
 
         m, v = self.enc(x)  # -> media y varianza
@@ -66,9 +59,7 @@ class VAE(nn.Module):
         nelbo = rec + kl
 
 
-        ################################################################################
-        # Fin de la modificación del código
-        ################################################################################
+
         return nelbo, kl, rec
 
     def negative_iwae_bound(self, x, iw):
