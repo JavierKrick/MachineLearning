@@ -35,10 +35,7 @@ class GMVAE(nn.Module):
             rec: tensor: (): Término de reconstrucción del ELBO
         """
         ################################################################################
-        # TODO: Modificar/completar el código aquí
-        # Calcular el Límite Inferior de Evidencia negativo y su descomposición en KL y Rec
-        #
-        # Para ayudarte a empezar, hemos calculado la mezcla de prior Gaussianos
+        #calculado la mezcla de prior Gaussianos
         # prior = (m_mixture, v_mixture) para ti, donde
         # m_mixture y v_mixture cada uno tiene forma (1, self.k, self.z_dim)
         #
@@ -69,7 +66,6 @@ class GMVAE(nn.Module):
         # 6. NELBO
         nelbo = kl + rec
         ################################################################################
-        # Fin de modificación del código
         ################################################################################
         return nelbo, kl, rec
 
@@ -87,17 +83,7 @@ class GMVAE(nn.Module):
             kl: tensor: (): Divergencia KL del ELBO al prior
             rec: tensor: (): Término de reconstrucción del ELBO
         """
-        ################################################################################
-        # TODO: Modificar/completar el código aquí
-        # Calcular niwae (IWAE negativo) con iw muestras de importancia, y la descomposición
-        # KL y Rec del Límite Inferior de Evidencia
-        #
-        # Las salidas deben ser todas escalares
-        ################################################################################
 
-        ################################################################################
-        # Fin de modificación del código
-        ################################################################################
         return niwae, kl, rec
 
     def loss(self, x):
