@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Rui Shu
+# Modificado por Javier Krick (2025) de (2021) Rui Shu (c).
 import numpy as np
 import torch
 from codebase import utils as ut
