@@ -40,17 +40,7 @@ class SSVAE(nn.Module):
             kl: tensor: (): Divergencia KL del ELBO al prior
             rec: tensor: (): Término de reconstrucción del ELBO
         """
-        ################################################################################
-        # TODO: Modificar/completar el código aquí
-        # Calcular el Límite Inferior de Evidencia negativo y su descomposición en KL_Z, KL_Y y Rec
-        #
-        # Para ayudarte en la vectorización de la suma sobre y, tenemos
-        # el cálculo de q(y | x) y algo de código de tiling de tensores para ti.
-        #
-        # Nota que nelbo = kl_z + kl_y + rec
-        #
-        # Las salidas deben ser todas escalares
-        ################################################################################
+#
         y_logits = self.cls(x)
         y_logprob = F.log_softmax(y_logits, dim=1) # log(q_\phi(y|x))
         y_prob = torch.softmax(y_logprob, dim=1) # q_\phi(y|x)
@@ -93,9 +83,7 @@ class SSVAE(nn.Module):
     	#Pérdida total
         nelbo = kl_y + kl_z + rec
 
-        ################################################################################
-        # Fin de modificación del código
-        ################################################################################
+
         return nelbo, kl_z, kl_y, rec
 
     def classification_cross_entropy(self, x, y):
