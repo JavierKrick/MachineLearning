@@ -16,16 +16,7 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 bce = torch.nn.BCEWithLogitsLoss(reduction='none')
 
-################################################################################
-# Por favor, familiarícese con el código de abajo.
-#
-# Tenga en cuenta que la notación es
-# argumento: tipo_de_argumento: forma_del_argumento
-#
-# Además, la forma_del_argumento esperada es solo una guía. Puede
-# pasar entradas que violen la forma_del_argumento esperada siempre que sepa
-# lo que está haciendo.
-################################################################################
+
 
 def sample_gaussian(m, v):
     """
@@ -38,15 +29,12 @@ def sample_gaussian(m, v):
     Return:
         z: tensor: (batch, dim): Muestras
     """
-    ################################################################################
-    # TODO: Modifique/completar el código aquí
+    
     # Muestrea z
-    ################################################################################
+    
     eps = torch.randn_like(m)   
     z = m + torch.sqrt(v) * eps
-    ################################################################################
-    # Fin de la modificación del código
-    ################################################################################
+
     return z
 
 
@@ -93,11 +81,7 @@ def log_normal_mixture(z, m, v):
     Return:
         log_prob: tensor: (batch,): probabilidad logarítmica de cada muestra
     """
-    ################################################################################
-    # TODO: Modifique/completar el código aquí
-    # Calcule la densidad de la mezcla de Gaussianas con pesos uniformes para cada muestra
-    # en el batch
-    ################################################################################
+
     # expanda z para que coincida la dimensionalidad de m y v
     
     z_expandido = z.unsqueeze(1)
@@ -108,9 +92,7 @@ def log_normal_mixture(z, m, v):
     # La media se toma sobre la dimensión de la mezcla (dim=1).
     log_prob = log_mean_exp(log_prob_componentes, dim=1)
     
-    ################################################################################
-    # Fin de la modificación del código
-    ################################################################################
+
     return log_prob
 
 
@@ -244,10 +226,7 @@ def load_model_by_name(model, global_step, device=None):
     print("Loaded from {}".format(file_path))
 
 
-################################################################################
-# No es necesario leer/entender el código más allá de este punto. A menos que quiera.
-# Pero, ¿realmente quiere? ¯\_(ツ)_/¯
-################################################################################
+
 
 
 def evaluate_lower_bound(model, labeled_test_subset, run_iwae=True):
